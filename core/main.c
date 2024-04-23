@@ -1,10 +1,4 @@
 #include "fmheaders.h"
-#include <pwd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#define BUFFSIZE 255
-
 
 char *getFullPath(const char *path, const char *name);
 int main(int argc, char *argv[]) {

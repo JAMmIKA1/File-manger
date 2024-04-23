@@ -1,10 +1,14 @@
 #ifndef STACK_H
 #define STACK_H
-#include <dirent.h>
+
+#include <pwd.h>
 #include <stdio.h>
+#include <dirent.h>
 #include <sys/stat.h>
+#include <stdlib.h>
 #include <unistd.h>
-#include <sys/stat.h>
+#include <string.h>
+#define BUFFSIZE 255
 
 void listFiles(const char *path);
 char *getFullPath(const char *path, const char *name);

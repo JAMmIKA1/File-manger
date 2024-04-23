@@ -1,7 +1,4 @@
 #include "fmheaders.h"
-#include <stdio.h>
-#include <string.h>
-#include <dirent.h>
 
 void listFiles(const char *path) {
     DIR *dir;

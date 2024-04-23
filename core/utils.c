@@ -1,6 +1,4 @@
 #include "fmheaders.h"
-#include <stdio.h>
-
 
 char *getFullPath(const char *path, const char *name) {
 	char *fpath;

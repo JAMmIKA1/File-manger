@@ -1,9 +1,4 @@
 #include "fmheaders.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/stat.h>
-#include <unistd.h>
 
 void makeDirectory(const char *path) {
     if (mkdir(path, 0755) == -1) {
