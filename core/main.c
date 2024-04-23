@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
 	char choice;
 
 	while (1) {
-        listFiles(path);
+        listFiles(path, 1);
         printf("\n> ");
 		scanf("%c%*c", &choice);
         printf("> ");
