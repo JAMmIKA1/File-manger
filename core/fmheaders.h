@@ -10,8 +10,9 @@
 #include <string.h>
 #define BUFFSIZE 255
 
-void listFiles(const char *path);
+void listFiles(const char *path, int show_hidden);
 char *getFullPath(const char *path, const char *name);
+int isDir(const char *path);
 void changePermissions(const char *path, unsigned int mode);
 void makeDirectory(const char *path);
 void deleteObject(const char *path);
