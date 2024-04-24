@@ -1,43 +1,32 @@
-#include "../core/fmheaders.h"
+#include "lotus.h"
+#include "lotus-cli.h"
 
 int main(int argc, char *argv[]) {
-	struct passwd *pw = getpwuid(getuid());
-	const char *homedir = pw->pw_dir;
-	char *path = getFullPath(0, homedir);
-	char choice, str[BUFFSIZE], *fpath;
+	char *current_path = getSettedPath();
+	char choice, *next_path;
 	int show_hidden = 0;
 
 	while (1) {
-		puts("\n----------------------");
-		listFiles(path, show_hidden);
-		puts("\n----------------------");
-		printf("1. Make directory.\n2. Delete a file/directory.\n"
-			   "3. Change directory.\n4. Toggle hidden files/directories.\n");
-		printf("\n\\> ");
+        displayMenu(current_path, show_hidden);
 		scanf("%c%*c", &choice);
+
 		switch (choice) {
 			case '1':
-				printf("> ");
-				scanf("%[^\n]%*c", str);
-				fpath = getFullPath(path, str);
-				makeDirectory(fpath);
-				free(fpath);
+                next_path = getNextPath(current_path);
+				makeDirectory(next_path);
+				free(next_path);
 				break;
 			case '2':
-				printf("> ");
-				scanf("%[^\n]%*c", str);
-				fpath = getFullPath(path, str);
-				deleteObject(fpath);
-				free(fpath);
+                next_path = getNextPath(current_path);
+				deleteObject(next_path);
+				free(next_path);
 				break;
 			case '3':
-				printf("> ");
-				scanf("%[^\n]%*c", str);
-				fpath = getFullPath(path, str);
-				if (isDir(fpath)) {
-					strcpy(path, fpath);
+                next_path = getNextPath(current_path);
+				if (isDir(next_path)) {
+					strcpy(current_path, next_path);
 				}
-				free(fpath);
+				free(next_path);
 				break;
 			case '4':
 				show_hidden = !show_hidden;
