@@ -1,6 +1,6 @@
-# Linux File Manager
+# Lotus File Manager
 
-This is a simple file manager for Linux systems, designed to provide basic file management functionalities in a user-friendly interface.
+This is a simple open-source file manager for Linux-based systems, designed to provide basic file management functionalities in a user-friendly interface.
 
 ## Features
 
@@ -11,23 +11,27 @@ This is a simple file manager for Linux systems, designed to provide basic file 
 
 ## Installation
 
-To install the file manager, simply clone this repository:
+To install Lotus file manager, simply clone this repository:
 
 ```bash
-git clone https://github.com/your-username/linux-file-manager.git
+git clone https://github.com/JAMmIKA1/Lotus-File-Manger.git
 ```
 
 ## Usage
 
 1. Navigate to the cloned repository directory.
-2. Build the file manager.
-
 ```bash
-make build
+cd ./Lotus-File-Manger
 ```
 
-3. Run the file manager executable.
+2. Build the lotus file manager.
 
 ```bash
-./file_manager
+make lotus
+```
+
+3. Run the lotus executable.
+
+```bash
+./lotus
 ```
