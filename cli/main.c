@@ -3,9 +3,7 @@
 int main(int argc, char *argv[]) {
 	struct passwd *pw = getpwuid(getuid());
 	const char *homedir = pw->pw_dir;
-	char *path = (char *) malloc(1024);
-	path[0] = 0;
-	path = getFullPath(path, homedir);
+	char *path = getFullPath(0, homedir);
 	char choice, str[BUFFSIZE], *fpath;
 	int show_hidden = 0;
 

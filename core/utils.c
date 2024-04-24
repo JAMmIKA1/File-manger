@@ -11,18 +11,21 @@ int isDir(const char *path) {
 }
 char *getFullPath(const char *path, const char *name) {
 	char *fpath;
-	if (!strcmp(name, "..")) {
+	if (!path) {
+		asprintf(&fpath, "%s", name);
+	} else if (!strcmp(name, "..")) {
 		int i = strlen(path) - 1;
-        asprintf(&fpath, "%s", path);
-
+		asprintf(&fpath, "%s", path);
 		while (i--) {
 			if (fpath[i] == '/') {
-				fpath[i + 1] = 0;
+				fpath[i ? i : i + 1] = 0;
 				break;
 			}
 		}
+	} else if (strlen(path) == 1) {
+		asprintf(&fpath, "%s%s", path, name);
 	} else {
-        asprintf(&fpath, "%s%s/", path, name);
-    }
+		asprintf(&fpath, "%s/%s", path, name);
+	}
 	return fpath;
 }
