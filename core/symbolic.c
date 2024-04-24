@@ -1,4 +1,4 @@
-#include "fmheaders.h"
+#include "lotus.h"
 
 void createSymbolicLink(const char *src, const char *dst) {
     if (symlink(src, dst) == -1) {

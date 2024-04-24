@@ -1,4 +1,4 @@
-#include "fmheaders.h"
+#include "lotus.h"
 
 int isDir(const char *path) {
 	DIR *dir;
@@ -12,7 +12,8 @@ int isDir(const char *path) {
 char *getFullPath(const char *path, const char *name) {
 	char *fpath;
 	if (!path) {
-		asprintf(&fpath, "%s", name);
+        fpath = (char*) malloc(sizeof(char)*4096);
+        strcpy (fpath, name);
 	} else if (!strcmp(name, "..")) {
 		int i = strlen(path) - 1;
 		asprintf(&fpath, "%s", path);

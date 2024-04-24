@@ -1,4 +1,4 @@
-#include "fmheaders.h"
+#include "lotus.h"
 
 void makeDirectory(const char *path) {
     if (mkdir(path, 0755) == -1) {

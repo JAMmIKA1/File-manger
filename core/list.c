@@ -1,4 +1,4 @@
-#include "fmheaders.h"
+#include "lotus.h"
 
 void listFiles(const char *path, int show_hidden) {
 	DIR *dir;
