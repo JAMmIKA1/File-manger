@@ -7,10 +7,9 @@ void makeDirectory(const char *path) {
 }
 
 void deleteObject(const char *path) {
-    DIR *dir;
+    DIR *dir = opendir(path);
     struct dirent *entry;
 
-    dir = opendir(path);
     if (dir) {
         while ((entry = readdir(dir)) != NULL) {
             if (strcmp(entry->d_name, "..") && strcmp(entry->d_name, ".")) {
