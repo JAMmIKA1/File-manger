@@ -6,7 +6,7 @@ void listFiles(const char *path, int show_hidden) {
 
 	dir = opendir(path);
 	if (dir == NULL) {
-		perror("Error opening directory");
+		perror("\nError opening directory");
 		return;
 	}
 

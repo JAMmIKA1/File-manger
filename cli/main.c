@@ -25,10 +25,20 @@ int main(int argc, char *argv[]) {
                 next_path = getNextPath(current_path);
 				if (isDir(next_path)) {
 					strcpy(current_path, next_path);
-				}
+				} else {
+                    perror("\nTask failed");
+                }
 				free(next_path);
 				break;
-			case '4':
+            case '4':
+                next_path = getNextPath(current_path);
+                char dst[4096];
+                printf("-> ");
+                scanf("%[^\n]%*c", dst);
+                createSymbolicLink(next_path, dst, current_path);
+                free (next_path);
+                break;
+			case '5':
 				show_hidden = !show_hidden;
 				break;
 			default:

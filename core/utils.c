@@ -12,8 +12,8 @@ int isDir(const char *path) {
 char *getFullPath(const char *path, const char *name) {
 	char *fpath;
 	if (!path) {
-        fpath = (char*) malloc(sizeof(char)*4096);
-        strcpy (fpath, name);
+		fpath = (char *) malloc(sizeof(char) * 4096);
+		strcpy(fpath, name);
 	} else if (!strcmp(name, "..")) {
 		int i = strlen(path) - 1;
 		asprintf(&fpath, "%s", path);
@@ -23,10 +23,16 @@ char *getFullPath(const char *path, const char *name) {
 				break;
 			}
 		}
+	} else if (!strcmp(name, ".")) {
+		asprintf(&fpath, "%s", path);
 	} else if (strlen(path) == 1) {
 		asprintf(&fpath, "%s%s", path, name);
 	} else {
 		asprintf(&fpath, "%s/%s", path, name);
 	}
 	return fpath;
+}
+char *getHome() {
+	struct passwd *pw = getpwuid(getuid());
+	return pw->pw_dir;
 }
