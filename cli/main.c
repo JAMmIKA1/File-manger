@@ -38,7 +38,14 @@ int main(int argc, char *argv[]) {
                 createSymbolicLink(next_path, dst, current_path);
                 free (next_path);
                 break;
-			case '5':
+            case '5':
+                next_path = getNextPath(current_path);
+                int mode;
+                scanf("%d%*c", &mode);
+                changePermissions(next_path, mode);
+				free(next_path);
+				break;
+			case '6':
 				show_hidden = !show_hidden;
 				break;
 			default:

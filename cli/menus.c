@@ -8,7 +8,7 @@ void displayMenu(const char *path, int show_hidden) {
 
 	printf("1. Make directory.\n2. Delete a file/directory.\n"
 		   "3. Change directory.\n4. Create symbolic link.\n"
-		   "5. Toggle hidden files/directories.\n");
+		   "5. Change permissions\n6. Toggle hidden files/directories.\n");
 
 	printf("\n\\> ");
 }
