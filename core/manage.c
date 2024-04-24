@@ -1,7 +1,7 @@
 #include "lotus.h"
 
 void makeDirectory(const char *path) {
-    if (mkdir(path, 0755) == -1) {
+    if (mkdir(path, 0777) == -1) {
         pcerror("\nError creating directory");
     }
 }
