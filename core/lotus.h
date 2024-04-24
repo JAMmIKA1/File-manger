@@ -1,14 +1,15 @@
 #ifndef LOTUS_H
 #define LOTUS_H
 
+#include <dirent.h>
 #include <pwd.h>
 #include <stdio.h>
-#include <dirent.h>
-#include <sys/stat.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #define BUFFSIZE 256
+#define ST 2
 
 void listFiles(const char *path, int show_hidden);
 char *getFullPath(const char *path, const char *name);
@@ -18,5 +19,6 @@ void makeDirectory(const char *path);
 void deleteObject(const char *path);
 void createSymbolicLink(const char *src, char *dst, const char *current_path);
 char *getHome();
+void pcerror(const char *err);
 
 #endif

@@ -1,5 +1,13 @@
 #include "lotus.h"
+#include <string.h>
 
+void pcerror(const char* err) {
+    char buff[1000] = "\x1b[1;31m";
+    strcat(buff, err);
+    perror(buff);
+    printf("\x1b[0m");
+    sleep(ST);
+}
 int isDir(const char *path) {
 	DIR *dir;
 	dir = opendir(path);

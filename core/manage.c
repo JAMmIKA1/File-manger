@@ -2,7 +2,7 @@
 
 void makeDirectory(const char *path) {
     if (mkdir(path, 0755) == -1) {
-        perror("\nError creating directory");
+        pcerror("\nError creating directory");
     }
 }
 
@@ -22,6 +22,6 @@ void deleteObject(const char *path) {
         closedir(dir);
     }
     if (remove(path) == -1) {
-        perror("\nError deleting file");
+        pcerror("\nError deleting file");
     }
 }

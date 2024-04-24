@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 				if (isDir(next_path)) {
 					strcpy(current_path, next_path);
 				} else {
-                    perror("\nTask failed");
+                    pcerror("\nError open directory");
                 }
 				free(next_path);
 				break;
