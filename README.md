@@ -20,7 +20,13 @@ git clone https://github.com/your-username/linux-file-manager.git
 ## Usage
 
 1. Navigate to the cloned repository directory.
-2. Run the file manager executable.
+2. Build the file manager.
+
+```bash
+make build
+```
+
+3. Run the file manager executable.
 
 ```bash
 ./file_manager
