@@ -2,7 +2,8 @@
 #include "lotus.h"
 
 int main(int argc, char *argv[]) {
-	char *current_path = getSettedPath();
+	char *current_path = (argc >= 2 && isDir(argv[1])) ? getFullPath(0, argv[1])
+													   : getSettedPath();
 	char choice[5096], *next_path;
 	int show_hidden = 0;
 
@@ -29,9 +30,9 @@ int main(int argc, char *argv[]) {
 			next_path = getNextPath(current_path);
 			char *dst;
 			printf("-> ");
-            dst = getNextPath(0);
+			dst = getNextPath(0);
 			createSymbolicLink(next_path, dst, current_path);
-            free(dst);
+			free(dst);
 			free(next_path);
 		} else if (!strcmp(choice, "mode")) {
 			int mode;
@@ -42,7 +43,7 @@ int main(int argc, char *argv[]) {
 		} else if (!strcmp(choice, "hidden")) {
 			show_hidden = !show_hidden;
 		} else if (!strcmp(choice, "exit") || !strcmp(choice, "quit")) {
-            return 0;
+			return 0;
 		}
 	}
 }
