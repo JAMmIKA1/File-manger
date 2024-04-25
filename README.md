@@ -10,8 +10,8 @@ This is a simple open-source file manager for Linux-based systems, designed to p
 
 - Browse files and directories
 - Create, delete, rename files and directories
-- make symbolic links for  files and directories
-- permission control for files and directories
+- Make symbolic links for  files and directories
+- Permission control for files and directories
 
 ## Installation
 
