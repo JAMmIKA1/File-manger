@@ -28,14 +28,14 @@ git clone https://github.com/JAMmIKA1/Lotus-File-Manger.git
 cd ./Lotus-File-Manger
 ```
 
-2. Build the lotus file manager.
+2. Install the lotus file manager.
 
 ```bash
-make lotus
+sudo ./install
 ```
 
-3. Run the lotus executable.
+3. Run Lotus!.
 
 ```bash
-./lotus
+lotus
 ```

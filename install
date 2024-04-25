@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+cp ./cli/lotus.1.gz /usr/share/man/man1/lotus.1.gz
+make lotus
+mv ./lotus /usr/bin/lotus
