@@ -15,15 +15,15 @@ int main(int argc, char *argv[]) {
 	while (1) {
 		displayMenu(current_path, show_hidden);
 		scanf("%s", choice);
-		if (!strcmp(choice, "mkdir")) {
+		if (!strcmp(choice, "make")) {
 			next_path = getNextPath(current_path);
 			makeDirectory(next_path);
 			free(next_path);
-		} else if (!strcmp(choice, "rm")) {
+		} else if (!strcmp(choice, "remove")) {
 			next_path = getNextPath(current_path);
 			deleteObject(next_path);
 			free(next_path);
-		} else if (!strcmp(choice, "cd")) {
+		} else if (!strcmp(choice, "goto")) {
 			next_path = getNextPath(current_path);
 			if (isDir(next_path)) {
 				strcpy(current_path, next_path);
@@ -31,11 +31,11 @@ int main(int argc, char *argv[]) {
 				pcerror("\nError open directory");
 			}
 			free(next_path);
-		} else if (!strcmp(choice, "ld")) {
+		} else if (!strcmp(choice, "link")) {
 			next_path = getNextPath(current_path);
 			createSymbolicLink(next_path, current_path);
 			free(next_path);
-		} else if (!strcmp(choice, "chmod")) {
+		} else if (!strcmp(choice, "mode")) {
 			mode_t mode;
 			scanf("%d", &mode);
 			next_path = getNextPath(current_path);
