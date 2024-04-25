@@ -11,6 +11,7 @@ void listFiles(const char *path, int show_hidden) {
 		return;
 	}
 
+    // Print directories first
     printf("\033[1;35m");
 	while ((entry = readdir(dir)) != NULL) {
 		if (entry->d_type == 4 && strcmp(entry->d_name, "..") &&
@@ -21,6 +22,7 @@ void listFiles(const char *path, int show_hidden) {
 		}
 	}
 
+    // Print files
     printf("\033[0m");
     rewinddir(dir);
 	while ((entry = readdir(dir)) != NULL) {
@@ -35,6 +37,7 @@ void listFiles(const char *path, int show_hidden) {
             files++;
 		}
 	}
+
     printf("\n%u directories, %u files", dirs, files);
 	closedir(dir);
 }

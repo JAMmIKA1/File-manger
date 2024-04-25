@@ -7,17 +7,19 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <unistd.h>
 #define BUFFSIZE 256
 #define ST 2
 
+void trim(char *input);
 void listFiles(const char *path, int show_hidden);
 char *getFullPath(const char *path, const char *name);
 int isDir(const char *path);
 void changePermissions(const char *path, unsigned int mode);
 void makeDirectory(const char *path);
 void deleteObject(const char *path);
-void createSymbolicLink(const char *src, char *dst, const char *current_path);
+void createSymbolicLink(char *src, const char *current_path);
 char *getHome();
 void pcerror(const char *err);
 

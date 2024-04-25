@@ -1,24 +1,29 @@
 #include "lotus-cli.h"
 #include "lotus.h"
+#include <unistd.h>
 
 int main(int argc, char *argv[]) {
+    // detect pathes in arguments
+    if (argc > 1) {
+        trim(argv[1]);
+    }
 	char *current_path = (argc >= 2 && isDir(argv[1])) ? getFullPath(0, argv[1])
 													   : getSettedPath();
-	char choice[5096], *next_path;
+	char choice[1024], *next_path;
 	int show_hidden = 0;
 
 	while (1) {
 		displayMenu(current_path, show_hidden);
-		scanf("%s%*[\040]", choice);
-		if (!strcmp(choice, "make")) {
+		scanf("%s", choice);
+		if (!strcmp(choice, "mkdir")) {
 			next_path = getNextPath(current_path);
 			makeDirectory(next_path);
 			free(next_path);
-		} else if (!strcmp(choice, "remove")) {
+		} else if (!strcmp(choice, "rm")) {
 			next_path = getNextPath(current_path);
 			deleteObject(next_path);
 			free(next_path);
-		} else if (!strcmp(choice, "goto")) {
+		} else if (!strcmp(choice, "cd")) {
 			next_path = getNextPath(current_path);
 			if (isDir(next_path)) {
 				strcpy(current_path, next_path);
@@ -26,17 +31,13 @@ int main(int argc, char *argv[]) {
 				pcerror("\nError open directory");
 			}
 			free(next_path);
-		} else if (!strcmp(choice, "link")) {
+		} else if (!strcmp(choice, "ld")) {
 			next_path = getNextPath(current_path);
-			char *dst;
-			printf("-> ");
-			dst = getNextPath(0);
-			createSymbolicLink(next_path, dst, current_path);
-			free(dst);
+			createSymbolicLink(next_path, current_path);
 			free(next_path);
-		} else if (!strcmp(choice, "mode")) {
-			int mode;
-			scanf("%d%*[\040]", &mode);
+		} else if (!strcmp(choice, "chmod")) {
+			mode_t mode;
+			scanf("%d", &mode);
 			next_path = getNextPath(current_path);
 			changePermissions(next_path, mode);
 			free(next_path);
@@ -44,6 +45,8 @@ int main(int argc, char *argv[]) {
 			show_hidden = !show_hidden;
 		} else if (!strcmp(choice, "exit") || !strcmp(choice, "quit")) {
 			return 0;
-		}
+		} else if (!strcmp(choice, "help")) {
+            displayHelpMenu();
+        }
 	}
 }

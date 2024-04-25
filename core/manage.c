@@ -10,6 +10,7 @@ void deleteObject(const char *path) {
     DIR *dir = opendir(path);
     struct dirent *entry;
 
+    // recursively delete all entities inside the directory
     if (dir) {
         while ((entry = readdir(dir)) != NULL) {
             if (strcmp(entry->d_name, "..") && strcmp(entry->d_name, ".")) {
@@ -20,6 +21,7 @@ void deleteObject(const char *path) {
         }
         closedir(dir);
     }
+
     if (remove(path) == -1) {
         pcerror("\nError deleting file");
     }
