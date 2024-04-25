@@ -22,7 +22,7 @@ void trim(char *input) {
 	if (!input) {
 		return;
 	}
-	size_t len = strlen(input), i, start, end;
+	long len = strlen(input), i, start, end;
 	for (i = 0; i < len; i++) {
 		if (!(input[i] == ' ' || input[i] == '\n')) {
 			start = i;
@@ -30,7 +30,7 @@ void trim(char *input) {
 		}
 	}
 	for (i = len - 1; i >= 0; i--) {
-		if (!(input[i] == ' ' || input[i] == '\n' || (input[i] == '/' && i))) {
+		if (!(input[i] == ' ' || input[i] == '\n' || (input[i] == '/' && i!=start))) {
 			end = i + 1;
 			break;
 		}
