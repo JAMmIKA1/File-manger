@@ -25,7 +25,7 @@ git clone https://github.com/JAMmIKA1/Lotus-File-Manger.git
 
 1. Navigate to the cloned repository directory.
 ```bash
-cd ./Lotus-File-Manger
+cd ./Lotus-File-Manager
 ```
 
 2. Install the lotus file manager.
