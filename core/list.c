@@ -1,11 +1,37 @@
 #include "lotus.h"
+#include <dirent.h>
 #include <stdio.h>
+#include <unistd.h>
 
+void printFile(const char *d_name, unsigned char d_type, const char *path) {
+	ssize_t link_len = -1;
+	char specialchar = 0;
+	struct stat fileStat;
+	char link_path[4096];
+	char *fpath = getFullPath(path, d_name);
+	stat(fpath, &fileStat);
+	if (d_type == 10) {
+		link_len = readlink(fpath, link_path, sizeof(link_path) - 1);
+		link_path[link_len] = 0;
+		printf("\033[1;36m");
+		specialchar = '@';
+	} else {
+		if (!isDir(fpath) && (fileStat.st_mode & S_IXUSR || fileStat.st_mode & S_IXGRP ||
+			fileStat.st_mode & S_IXOTH)) {
+			printf("\033[1;32m");
+			specialchar = '*';
+		}
+	}
+	printf("%s\033[0m%c", d_name, specialchar);
+	if (link_len != -1) {
+        // char *lfpath = getFullPath(path, link_path);
+        printf(" -> ");
+        printFile(link_path, 0, path);
+	}
+}
 void listFiles(const char *path, int show_hidden) {
 	DIR *dir;
 	struct dirent *entry;
-	struct stat fileStat;
-	char fpath[4096];
 	unsigned dirs = 0, files = 0;
 
 	dir = opendir(path);
@@ -29,23 +55,11 @@ void listFiles(const char *path, int show_hidden) {
 	rewinddir(dir);
 
 	while ((entry = readdir(dir)) != NULL) {
-		char specialchar = 0;
 		if (entry->d_type != 4 && strcmp(entry->d_name, "..") &&
 			strcmp(entry->d_name, ".") &&
 			(show_hidden || entry->d_name[0] != '.')) {
-			snprintf(fpath, 4096, "%s/%s", path, entry->d_name);
-			stat(fpath, &fileStat);
-			if (entry->d_type == 10) {
-				printf("\033[1;36m");
-				specialchar = '@';
-			} else {
-				if (fileStat.st_mode & S_IXUSR || fileStat.st_mode & S_IXGRP ||
-					fileStat.st_mode & S_IXOTH) {
-					printf("\033[1;32m");
-					specialchar = '*';
-				}
-			}
-			printf("%s\033[0m%c\n", entry->d_name, specialchar);
+            printFile(entry->d_name, entry->d_type, path);
+			putchar('\n');
 			files++;
 		}
 	}
