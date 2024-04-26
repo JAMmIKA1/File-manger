@@ -1,5 +1,6 @@
 #!/usr/bin/bash
+CC=gcc
 
 cp ./cli/lotus.1.gz /usr/share/man/man1/lotus.1.gz
-make lotus
+$CC ./*/*.c -o lotus
 mv ./lotus /usr/bin/lotus

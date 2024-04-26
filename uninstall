@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+rm /usr/bin/lotus
+rm /usr/share/man/man1/lotus.1.gz
