@@ -18,7 +18,7 @@ This is a simple open-source file manager for Linux-based systems, designed to p
 To install Lotus file manager, simply clone this repository:
 
 ```bash
-git clone https://github.com/JAMmIKA1/Lotus-File-Manger.git
+git clone https://github.com/JAMmIKA1/Lotus-File-Manager.git
 ```
 
 ## Usage
