@@ -22,7 +22,7 @@ void trim(char *input) {
 	if (!input) {
 		return;
 	}
-	long len = strlen(input), i, start, end;
+	long len = strlen(input), i, start = 0, end = 0;
 	for (i = 0; i < len; i++) {
 		if (!(input[i] == ' ' || input[i] == '\n')) {
 			start = i;
@@ -62,6 +62,8 @@ char *getFullPath(const char *path, const char *name) {
 		}
 	} else if (!strcmp(name, ".")) {
 		asprintf(&fpath, "%s", path);
+    } else if (!strlen(name)) {
+		asprintf(&fpath, "%s", home);
 	} else if (name[0] == '~') {
 		fpath = getFullPath(home, name + 2);
 	} else if (name[0] == '/') {
@@ -70,6 +72,12 @@ char *getFullPath(const char *path, const char *name) {
 		asprintf(&fpath, "%s/%s", path, name);
 	}
 	return fpath;
+}
+char *getNextPath(const char *path) {
+	char input[BUFFSIZE] = "";
+	scanf("%[^\n]%*c", input);
+    trim(input);
+	return getFullPath(path, input);
 }
 char *getHome() {
 	struct passwd *pw = getpwuid(getuid());

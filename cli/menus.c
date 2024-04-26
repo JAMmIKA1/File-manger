@@ -12,14 +12,6 @@ void displayMenu(const char *path, int show_hidden) {
 	printf("\x1b[1;32m\\\x1b[0m> ");
 }
 
-
-char *getNextPath(const char *path) {
-	char input[BUFFSIZE];
-	scanf("%[^\n]%*c", input);
-    trim(input);
-	return getFullPath(path, input);
-}
-
 void displayHelpMenu() {
 	printf("\x1b[2J\x1b[H\x1b[1;97m");
     printf("Lotus Help Menu:\n");

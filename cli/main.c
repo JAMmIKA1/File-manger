@@ -7,8 +7,11 @@ int main(int argc, char *argv[]) {
     if (argc > 1) {
         trim(argv[1]);
     }
-	char *current_path = (argc >= 2 && isDir(argv[1])) ? getFullPath(0, argv[1])
+    char *pwd = (char*) malloc(4096);
+    getcwd(pwd, 4096);
+	char *current_path = (argc >= 2 && isDir(argv[1])) ? getFullPath(pwd, argv[1])
 													   : getSettedPath();
+    free(pwd);
 	char choice[1024], *next_path;
 	int show_hidden = 0;
 
