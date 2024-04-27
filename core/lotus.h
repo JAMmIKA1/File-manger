@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-#define BUFFSIZE 256
+#define BUFFSIZE 4096
 #define ST 2
 
 void trim(char *input);

@@ -7,13 +7,13 @@ int main(int argc, char *argv[]) {
     if (argc > 1) {
         trim(argv[1]);
     }
-    char *pwd = (char*) malloc(4096);
-    getcwd(pwd, 4096);
+    char *pwd = (char*) malloc(BUFFSIZE);
+    getcwd(pwd, BUFFSIZE);
 	char *current_path = (argc >= 2 && isDir(argv[1])) ? getFullPath(pwd, argv[1])
 													   : getSettedPath();
     parsePath(current_path);
     free(pwd);
-	char choice[1024], *next_path;
+	char choice[BUFFSIZE], *next_path;
 	int show_hidden = 0;
 
 	while (1) {
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
 			deleteObject(next_path);
 			free(next_path);
 		} else if (!strcmp(choice, "goto")) {
-            char link_path[4096];
+            char link_path[BUFFSIZE];
 			next_path = getNextPath(current_path);
             ssize_t link_len = readlink(next_path, link_path, sizeof(link_path) - 1);
             link_path[link_len] = 0;
@@ -43,13 +43,13 @@ int main(int argc, char *argv[]) {
             free(lfpath);
 			free(next_path);
 		} else if (!strcmp(choice, "link")) {
-            next_path = (char*) malloc(4092*2);
+            next_path = (char*) malloc(BUFFSIZE*2);
             scanf("%[^\n]%*c", next_path);
 			createSymbolicLink(next_path, current_path);
 			free(next_path);
 		} else if (!strcmp(choice, "mode")) {
 			mode_t mode;
-			scanf("%d", &mode);
+			scanf("%o", &mode);
 			next_path = getNextPath(current_path);
 			changePermissions(next_path, mode);
 			free(next_path);

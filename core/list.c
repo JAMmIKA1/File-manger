@@ -7,7 +7,7 @@ void printFile(char *d_name, unsigned char d_type, const char *path) {
 	ssize_t link_len = -1;
 	char specialchar = 0;
 	struct stat fileStat;
-	char link_path[4096];
+	char link_path[BUFFSIZE];
 	char *fpath = getFullPath(path, d_name);
 	stat(fpath, &fileStat);
 	if (d_type == 10) {

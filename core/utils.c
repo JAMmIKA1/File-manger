@@ -2,7 +2,7 @@
 
 void pcerror(const char *err) {
 	// custom error message
-	char buff[1000] = "\x1b[1;31m";
+	char buff[BUFFSIZE] = "\x1b[1;31m";
 	strcat(buff, err);
 	perror(buff);
 	printf("\x1b[0m");

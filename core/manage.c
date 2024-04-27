@@ -1,5 +1,5 @@
 #include "lotus.h"
-char tmpbuff[4096];
+char tmpbuff[BUFFSIZE];
 
 void makeDirectory(const char *path) {
 	if (mkdir(path, 0777) == -1) {
