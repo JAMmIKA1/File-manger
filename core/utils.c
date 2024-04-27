@@ -1,5 +1,4 @@
 #include "lotus.h"
-#include <string.h>
 
 void pcerror(const char *err) {
 	// custom error message
@@ -18,34 +17,13 @@ int isDir(const char *path) {
 	closedir(dir);
 	return 1;
 }
-void trim(char *input) {
-	if (!input) {
-		return;
-	}
-	long len = strlen(input), i, start = 0, end = 0;
-	for (i = 0; i < len; i++) {
-		if (!(input[i] == ' ' || input[i] == '\n')) {
-			start = i;
-			break;
-		}
-	}
-	for (i = len - 1; i >= 0; i--) {
-		if (!(input[i] == ' ' || input[i] == '\n' || (input[i] == '/' && i!=start))) {
-			end = i + 1;
-			break;
-		}
-	}
-	for (i = 0; start + i < end; i++) {
-		input[i] = input[start + i];
-	}
-	if (start > end) {
-		*input = 0;
-	} else {
-		input[end - start] = 0;
-	}
-}
-char *getFullPath(const char *path, const char *name) {
+
+char *getFullPath(const char *path, char *name) {
 	// concatenate two pathes with respect of special pathes ~ . .. /
+    if (!name) {
+        return 0;
+    }
+    trim(name);
 	char *home = getHome();
 	char *fpath;
 	if (!path) {
@@ -71,12 +49,12 @@ char *getFullPath(const char *path, const char *name) {
 	} else {
 		asprintf(&fpath, "%s/%s", path, name);
 	}
+    parsePath(fpath);
 	return fpath;
 }
-char *getNextPath(const char *path) {
+char *getNextPath(char *path) {
 	char input[BUFFSIZE] = "";
 	scanf("%[^\n]%*c", input);
-    trim(input);
 	return getFullPath(path, input);
 }
 char *getHome() {

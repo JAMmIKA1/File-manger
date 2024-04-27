@@ -11,6 +11,7 @@ int main(int argc, char *argv[]) {
     getcwd(pwd, 4096);
 	char *current_path = (argc >= 2 && isDir(argv[1])) ? getFullPath(pwd, argv[1])
 													   : getSettedPath();
+    parsePath(current_path);
     free(pwd);
 	char choice[1024], *next_path;
 	int show_hidden = 0;
@@ -27,15 +28,23 @@ int main(int argc, char *argv[]) {
 			deleteObject(next_path);
 			free(next_path);
 		} else if (!strcmp(choice, "goto")) {
+            char link_path[4096];
 			next_path = getNextPath(current_path);
-			if (isDir(next_path)) {
+            ssize_t link_len = readlink(next_path, link_path, sizeof(link_path) - 1);
+            link_path[link_len] = 0;
+            char *lfpath = getFullPath(current_path, link_path);
+            if (link_len != -1 && isDir(lfpath)) {
+				strcpy(current_path, lfpath);
+            } else if (isDir(next_path)) {
 				strcpy(current_path, next_path);
 			} else {
 				pcerror("\nError open directory");
 			}
+            free(lfpath);
 			free(next_path);
 		} else if (!strcmp(choice, "link")) {
-			next_path = getNextPath(current_path);
+            next_path = (char*) malloc(4092*2);
+            scanf("%[^\n]%*c", next_path);
 			createSymbolicLink(next_path, current_path);
 			free(next_path);
 		} else if (!strcmp(choice, "mode")) {

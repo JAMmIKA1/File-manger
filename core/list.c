@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void printFile(const char *d_name, unsigned char d_type, const char *path) {
+void printFile(char *d_name, unsigned char d_type, const char *path) {
 	ssize_t link_len = -1;
 	char specialchar = 0;
 	struct stat fileStat;
@@ -24,9 +24,13 @@ void printFile(const char *d_name, unsigned char d_type, const char *path) {
 	}
 	printf("%s\033[0m%c", d_name, specialchar);
 	if (link_len != -1) {
-        // char *lfpath = getFullPath(path, link_path);
+        char *lfpath = getFullPath(path, link_path);
         printf(" -> ");
-        printFile(link_path, 0, path);
+        if (isDir(lfpath)) {
+			printf("\033[1;35m%s\033[0m/", lfpath);
+        } else {
+            printFile(lfpath, 0, 0);
+        }
 	}
 }
 void listFiles(const char *path, int show_hidden) {

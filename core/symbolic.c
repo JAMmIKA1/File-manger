@@ -12,16 +12,14 @@ void createSymbolicLink(char *src, const char *current_path) {
 			dst = src + i + 2;
 		}
 	}
-	trim(src);
-	trim(dst);
+    src = getFullPath(current_path, src);
+    dst = getFullPath(current_path, dst);
 	if (!(*src && dst && *dst)) {
 		puts("\x1b[1;31m\nError creating symbolic link: Missing "
 			 "operand(s).\x1b[0m");
 		sleep(ST);
 		return;
 	}
-    dst = getFullPath(current_path, dst);
-
 	if (symlink(src, dst) == -1) {
 		pcerror("\nError creating symbolic link");
 	}

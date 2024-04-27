@@ -13,8 +13,9 @@
 #define ST 2
 
 void trim(char *input);
+void parsePath(char *str);
 void listFiles(const char *path, int show_hidden);
-char *getFullPath(const char *path, const char *name);
+char *getFullPath(const char *path, char *name);
 int isDir(const char *path);
 void changePermissions(const char *path, unsigned int mode);
 void makeDirectory(const char *path);
