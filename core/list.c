@@ -16,21 +16,22 @@ void printFile(char *d_name, unsigned char d_type, const char *path) {
 		printf("\033[1;36m");
 		specialchar = '@';
 	} else {
-		if (!isDir(fpath) && (fileStat.st_mode & S_IXUSR || fileStat.st_mode & S_IXGRP ||
-			fileStat.st_mode & S_IXOTH)) {
+		if (!isDir(fpath) &&
+			(fileStat.st_mode & S_IXUSR || fileStat.st_mode & S_IXGRP ||
+			 fileStat.st_mode & S_IXOTH)) {
 			printf("\033[1;32m");
 			specialchar = '*';
 		}
 	}
 	printf("%s\033[0m%c", d_name, specialchar);
 	if (link_len != -1) {
-        char *lfpath = getFullPath(path, link_path);
-        printf(" -> ");
-        if (isDir(lfpath)) {
+		char *lfpath = getFullPath(path, link_path);
+		printf(" -> ");
+		if (isDir(lfpath)) {
 			printf("\033[1;35m%s\033[0m/", lfpath);
-        } else {
-            printFile(lfpath, 0, 0);
-        }
+		} else {
+			printFile(lfpath, 0, 0);
+		}
 	}
 }
 void listFiles(const char *path, int show_hidden) {
@@ -62,7 +63,7 @@ void listFiles(const char *path, int show_hidden) {
 		if (entry->d_type != 4 && strcmp(entry->d_name, "..") &&
 			strcmp(entry->d_name, ".") &&
 			(show_hidden || entry->d_name[0] != '.')) {
-            printFile(entry->d_name, entry->d_type, path);
+			printFile(entry->d_name, entry->d_type, path);
 			putchar('\n');
 			files++;
 		}

@@ -20,10 +20,10 @@ int isDir(const char *path) {
 
 char *getFullPath(const char *path, char *name) {
 	// concatenate two pathes with respect of special pathes ~ . .. /
-    if (!name) {
-        return 0;
-    }
-    trim(name);
+	if (!name) {
+		return 0;
+	}
+	trim(name);
 	char *home = getHome();
 	char *fpath;
 	if (!path) {
@@ -40,7 +40,7 @@ char *getFullPath(const char *path, char *name) {
 		}
 	} else if (!strcmp(name, ".")) {
 		asprintf(&fpath, "%s", path);
-    } else if (!strlen(name)) {
+	} else if (!strlen(name)) {
 		asprintf(&fpath, "%s", home);
 	} else if (name[0] == '~') {
 		fpath = getFullPath(home, name + 2);
@@ -49,7 +49,7 @@ char *getFullPath(const char *path, char *name) {
 	} else {
 		asprintf(&fpath, "%s/%s", path, name);
 	}
-    parsePath(fpath);
+	parsePath(fpath);
 	return fpath;
 }
 char *getNextPath(char *path) {

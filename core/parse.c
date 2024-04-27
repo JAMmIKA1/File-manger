@@ -72,31 +72,33 @@ void removeBackDots(char *str) {
 		if (subaddr == str) {
 			cutpart(str, 0, sublen - 1);
 		} else if (subaddr) {
-            size_t index = subaddr - str, i;
-            for (i = index - 1; str[i] != '/'; i--);
-            cutpart(str, i, index + sublen - 1);
+			size_t index = subaddr - str, i;
+			for (i = index - 1; str[i] != '/'; i--)
+				;
+			cutpart(str, i, index + sublen - 1);
 		} else {
-            break;
-        }
+			break;
+		}
 	}
 	size_t len = strlen(str);
 	if (str[len - 1] == '.') {
 		str[len - 1] = 0;
 		len--;
-        if (len > 1) {
-            int i;
-            for (i = len - 2; str[i] != '/'; i--);
-            cutpart(str, i, len - 1);
-        }
-        len = strlen(str);
-        if (len > 1) {
-            str[len - 1] = 0;
-        }
+		if (len > 1) {
+			int i;
+			for (i = len - 2; str[i] != '/'; i--)
+				;
+			cutpart(str, i, len - 1);
+		}
+		len = strlen(str);
+		if (len > 1) {
+			str[len - 1] = 0;
+		}
 	}
 }
 void parsePath(char *str) {
 	trim(str);
 	removeDuplicateSlashes(str);
 	removeCurrentDot(str);
-    removeBackDots(str);
+	removeBackDots(str);
 }
