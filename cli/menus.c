@@ -17,7 +17,7 @@ void displayHelpMenu() {
 	printf("Lotus Help Menu:\n");
 	printf("-----------------------------------------------\n");
 	printf("goto [DIRECTORY]\n"
-		   "        \x1b[0;97mChange directory to another directory.\n\n");
+		   "        \x1b[0;97mNavigate to another directory.\n\n");
 	printf("\x1b[1;97mlink [SOURCE] -> [DEST]\n"
 		   "        \x1b[0;97mMake symbolic link from SOURCE to DEST.\n\n");
 	printf("\x1b[1;97mremove [ENTITY]\n"
