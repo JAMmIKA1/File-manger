@@ -60,9 +60,9 @@ void removeCurrentDot(char *str) {
 		str[len - 1] = 0;
 		len--;
 	}
-	if (str[len - 1] == '/' && len > 1) {
-		str[len - 1] = 0;
-	}
+	// if (str[len - 1] == '/' && len > 1) {
+	// 	str[len - 1] = 0;
+	// }
 }
 void removeBackDots(char *str) {
 	char *substr = "/../";
