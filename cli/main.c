@@ -1,6 +1,5 @@
 #include "lotus-cli.h"
 #include "lotus.h"
-#include <unistd.h>
 
 int main(int argc, char *argv[]) {
 	// detect pathes in arguments
