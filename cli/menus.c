@@ -24,6 +24,8 @@ void displayHelpMenu() {
 		   "        \x1b[0;97mRemove directory or file.\n\n");
 	printf("\x1b[1;97mmake [DIRECTORY_NAME]\n"
 		   "        \x1b[0;97mCreate new directory.\n\n");
+	printf("\x1b[1;97mmkfile [FILE_NAME]\n"
+		   "        \x1b[0;97mCreate new file.\n\n");
 	printf("\x1b[1;97mmode [PERMISSIONS_CODE] [ENTITY]\n"
 		   "        \x1b[0;97mChange permissions for entity.\n\n");
 	printf("\x1b[1;97mhidden\n"
