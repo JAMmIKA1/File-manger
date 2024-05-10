@@ -23,6 +23,10 @@ int main(int argc, char *argv[]) {
 			next_path = getNextPath(current_path);
 			makeDirectory(next_path);
 			free(next_path);
+        } else if (!strcmp(choice, "mkfile")) {
+			next_path = getNextPath(current_path);
+			makeFile(next_path);
+			free(next_path);
 		} else if (!strcmp(choice, "remove")) {
 			next_path = getNextPath(current_path);
 			deleteObject(next_path);

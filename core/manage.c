@@ -1,5 +1,12 @@
 #include "lotus.h"
+
 char tmpbuff[BUFFSIZE];
+
+void makeFile(const char *path) {
+    if (creat(path, 0644) == -1) {
+		pcerror("\nError creating file");
+    }
+}
 
 void makeDirectory(const char *path) {
 	if (mkdir(path, 0777) == -1) {

@@ -3,9 +3,10 @@
 #define BUFFSIZE 4096
 #define ST 2
 
+#include <pwd.h>
 #include <dirent.h>
 #include <unistd.h>
-#include <pwd.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,6 +16,7 @@
 void listFiles(const char *path, int show_hidden);
 void changePermissions(const char *path, unsigned int mode);
 void makeDirectory(const char *path);
+void makeFile(const char *path);
 void deleteObject(const char *path);
 void createSymbolicLink(char *src, const char *current_path);
 
